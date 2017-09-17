@@ -1,0 +1,78 @@
+
+<style>
+
+  .historia{
+    text-align: justify;
+    display: inline;
+    float:left;
+    width: 48%;
+    margin-right: 2%;
+  }
+
+  .crono{
+    text-align: justify;
+    display: inline;
+    float:right;
+    width: 50%;
+  }
+
+  .container{
+        margin: 0 auto;
+        text-align: center;
+        width: 60%;
+  }
+
+  .menu-ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  .menu-li { float: left; }
+  .menu-li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+   }
+
+   .menu-li a:hover{
+     background-color: #111;
+   }
+
+   .lemur{
+     width: 800px;
+     height: 340px;
+   }
+</style>
+
+
+<div class="container">
+    <h1>Acerca de </h1>
+    <%= link_to image_tag('lemur-about.gif', :class=>"lemur"), 'http://www.google.com.mx' %>
+
+    <ul class="menu-ul">
+      <li class="menu-li"><%= link_to 'Home', root_path %></li>
+      <li class="menu-li"><%= link_to 'About', about_path %></li>
+    </ul>
+
+   <div class="historia">
+    <h2>Programado en Ruby</h2>
+    <p>Se utilizó para programar esta pagina web Ruby Rails y se hizo en VIM sobre Gnu Linux Ubuntu 16.04 en un AMD FX 6300</p>
+  </div>
+
+ <div class="crono">
+ <h2>Cronología</h2>
+ <ul>
+   <li> Se crea alpha-blog
+   <li> Se configuran las rutas
+   <li> Se configuran los controladores
+   <li> Se configura el template
+ </ul>
+
+ </div>
+
+</div>

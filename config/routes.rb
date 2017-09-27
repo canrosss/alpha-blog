@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   #get pages es la ruta que debe ser redirigida hacia controlador#accion
   root 'pages#home'
   get 'about', to: 'pages#about'
+
+  resources :articles
+
 end

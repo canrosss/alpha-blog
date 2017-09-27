@@ -8,8 +8,26 @@ class ArticlesController < ApplicationController
 #    render plain: params[:article].inspect
     #Primero creamos una variable de instance
     #Necesitaremos filtrar los parametros
+ #   @article.save
+    #Despues de salvar nos debe de mandar a show
+    #
+  #  redirect_to articles_show(@article)
+    #
+
+
     @article = Article.new(article_params)
-    @article.save
+
+    if @article.save
+      #do something
+      flash[:notice] = "Article was a successfully created"
+      redirect_to articles_path(@article)
+    else
+      render 'new'
+    end
+  end
+
+  def show(*args)
+    @article = Article.find(params[:id])
   end
 
   private

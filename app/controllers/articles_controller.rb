@@ -1,4 +1,10 @@
 class ArticlesController < ApplicationController
+
+
+  def index(*args)
+    @articles = Article.all #Consigue todos los articulos desde la DB
+  end
+
   def new(*args)
 
     @article = Article.new
@@ -26,8 +32,25 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit(*args)
+    @article = Article.find(params[:id])
+  end
+
+
   def show(*args)
     @article = Article.find(params[:id])
+  end
+
+  def update(*args)
+
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      flash[:notice] = "Article was successfully updated"
+      redirect_to article_path(@article)
+    else
+      render 'edit'
+    end
+
   end
 
   private
@@ -36,4 +59,6 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:tittle, :description)
 
     end
+
+
 end

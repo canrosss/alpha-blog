@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-
+  before_action :set_article, only: [:edit, :update, :show, :destroy]
 
   def index(*args)
     @articles = Article.all #Consigue todos los articulos desde la DB
@@ -33,17 +33,13 @@ class ArticlesController < ApplicationController
   end
 
   def edit(*args)
-    @article = Article.find(params[:id])
   end
 
 
   def show(*args)
-    @article = Article.find(params[:id])
   end
 
   def update(*args)
-
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = "Article was successfully updated"
       redirect_to articles_path
@@ -55,13 +51,16 @@ class ArticlesController < ApplicationController
 
   def destroy(*args)
     #Buscamos el articulo basado en el id
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Article was successfully deleted!"
     redirect_to articles_path
   end
 
   private
+    def set_article(*args)
+      @article = Article.find(params[:id])
+    end
+
     def article_params(*args)
       #Pedimos que require ciertos parametros
       params.require(:article).permit(:tittle, :description)

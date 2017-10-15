@@ -11,6 +11,8 @@ class ArticlesController < ApplicationController
   end
 
   def create(*args)
+
+    debugger
 #    render plain: params[:article].inspect
     #Primero creamos una variable de instance
     #Necesitaremos filtrar los parametros
@@ -22,6 +24,7 @@ class ArticlesController < ApplicationController
 
 
     @article = Article.new(article_params)
+    @article.user = User.first
 
     if @article.save
       #do something

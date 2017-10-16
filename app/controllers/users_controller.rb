@@ -20,9 +20,12 @@ class UsersController < ApplicationController
 
   end
 
+  def index(*args)
+    @users = User.all
+  end
+
   def show(*args)
     @user = User.find(params[:id])
-
   end
 
   def update(*args)

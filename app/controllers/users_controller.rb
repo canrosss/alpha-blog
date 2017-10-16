@@ -21,11 +21,13 @@ class UsersController < ApplicationController
   end
 
   def index(*args)
-    @users = User.all
+    #@users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
   def show(*args)
-    @user = User.find(params[:id])
+     @user = User.find(params[:id])
+     @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
 
   def update(*args)

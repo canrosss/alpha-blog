@@ -56,4 +56,3 @@ class UsersController < ApplicationController
       redirect_path
     end
   end
-end

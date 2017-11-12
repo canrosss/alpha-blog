@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
 
   def create(*args)
 
-    debugger
+#    debugger
 #    render plain: params[:article].inspect
     #Primero creamos una variable de instance
     #Necesitaremos filtrar los parametros

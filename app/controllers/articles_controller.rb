@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show]
 
   def index(*args)
    # @articles = Article.all #Consigue todos los articulos desde la DB
@@ -8,7 +9,6 @@ class ArticlesController < ApplicationController
   end
 
   def new(*args)
-
     @article = Article.new
   end
 
@@ -26,7 +26,8 @@ class ArticlesController < ApplicationController
 
 
     @article = Article.new(article_params)
-    @article.user = User.first
+ #   @article.user = User.first
+    @article.user = current_user
 
     if @article.save
       #do something
@@ -51,7 +52,6 @@ class ArticlesController < ApplicationController
     else
       render 'edit'
     end
-
   end
 
   def destroy(*args)
@@ -69,8 +69,13 @@ class ArticlesController < ApplicationController
     def article_params(*args)
       #Pedimos que require ciertos parametros
       params.require(:article).permit(:tittle, :description)
-
     end
 
+    def require_same_user(*args)
+      if current_user != @article.user
+        flash[:danger]="You can only edit or delete your own articles"
+        redirect_to root_path
+      end
+    end
 
 end

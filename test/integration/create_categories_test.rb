@@ -7,7 +7,8 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
     assert_template 'categories/new'
     assert_difference 'Category.count', 1 do
       #revisa que tengas una http post request al categories_path
-      post_via_redirect categories_path, category: {name: "sports"}
+      post categories_path, params: {category: {name: 'sports'}}
+      follow_redirect!
     end
     #vemos que exista el template index
     assert_template 'categories/index'
@@ -19,12 +20,12 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
     get new_category_path
     assert_template 'categories/new'
     assert_no_difference 'Category.count' do
-      post categories_path, category: {name: "  "}
+      post categories_path, params: {category: {name: "  "}}
     end
     assert_template 'categories/new'
+    #Buscando la existencia de estos dos elementos
     assert_select 'h2.panel-title'
     assert_select 'div.panel-body'
-
   end
 
 end

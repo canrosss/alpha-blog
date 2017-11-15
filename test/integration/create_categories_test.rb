@@ -6,9 +6,12 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
     get new_category_path
     assert_template 'categories/new'
     assert_difference 'Category.count', 1 do
+      #revisa que tengas una http post request al categories_path
       post_via_redirect categories_path, category: {name: "sports"}
     end
+    #vemos que exista el template index
     assert_template 'categories/index'
+    #esperamos que exista en el body devuelto la palabra sports
     assert_match "sports", response.body
   end
 

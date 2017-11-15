@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
 
-  def setup(*args)
+  def setup
     @category = Category.create(name: "sports")
   end
 
@@ -17,7 +17,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    get(:show, {'id' => @category.id})
+    get :show, params: {id:@category.id}
     assert_response :success
   end
 

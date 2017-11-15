@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  def setup(*args)
+  #Este metodo ejecuta primero cuando corres las pubas
+  def setup
+    #instance variable
     @category = Category.new(name: "sports")
+                        #Atributo: sports
   end
 
   test "category should be valid" do
